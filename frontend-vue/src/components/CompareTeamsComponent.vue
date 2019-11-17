@@ -50,14 +50,25 @@
             };
         },
         computed: {
+            /**
+             * Initializes variable name from query variable
+             * @returns {string | (string | null)[]}
+             */
             firstTeam() {
                 return this.$route.query.firstTeam;
             },
+            /**
+             * Initializes variable name from query variable
+             * @returns {string | (string | null)[]}
+             */
             secondTeam() {
                 return this.$route.query.secondTeam;
             }
         },
         methods: {
+            /**
+             * This method gets called on page creation to fill out the needed data
+             */
             refreshCompareTeams() {
                 ScoreDataService.compareTeams(this.firstTeam, this.secondTeam)
                     .then(response => {
@@ -66,6 +77,9 @@
                         this.series = [this.firstRate, this.secondRate];
                     });
             },
+            /**
+             * Go back to main page
+             */
             goHome() {
                 this.$router.push(`/`);
             },

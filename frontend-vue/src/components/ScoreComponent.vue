@@ -73,10 +73,12 @@
                     this.date = response.data.date;
                 });
             },
+            /**
+             * Validates form and submits
+             * @param e
+             */
             validateAndSubmit(e) {
                 this.errors = [];
-
-
                 let today = new Date();
                 let dd = String(today.getDate()).padStart(2, '0');
                 let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -86,6 +88,10 @@
                     this.errors.push('Score required');
                 } else if (!this.validateScore(this.finalScore)) {
                     this.errors.push('Score must be in "Number-Number" format');
+                }
+
+                if(!this.firstTeam || !this.secondTeam || !this.secondTeam) {
+                    this.errors.push('You must select teams for all drop down fields.')
                 }
 
                 if(this.errors.length === 0) {
@@ -105,10 +111,18 @@
                 }
                 e.preventDefault();
             },
+            /**
+             * Validates the score field by using regex
+             * @param finalScore
+             * @returns {boolean}
+             */
             validateScore(finalScore) {
                 let re = /^[0-9]+-[0-9]+/;
                 return re.test(finalScore);
             },
+            /**
+             * Goes to home page
+             */
             goHome() {
                 this.$router.push(`/`);
             }

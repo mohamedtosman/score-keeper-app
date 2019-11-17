@@ -48,6 +48,9 @@
             }
         },
         methods: {
+            /**
+             * Gets called upon page creation
+             */
             refreshWinRates() {
                 ScoreDataService.retrieveWinRates(this.teamName)
                     .then(response => {
@@ -56,6 +59,9 @@
                        this.series = [this.wins, this.games-this.wins];
                     });
             },
+            /**
+             * Goes to home page
+             */
             goHome() {
                 this.$router.push(`/`);
             },

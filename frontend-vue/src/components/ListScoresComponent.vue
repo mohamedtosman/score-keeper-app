@@ -56,27 +56,45 @@
             };
         },
         methods: {
+            /**
+             * This method gets called on page creation
+             */
             refreshScores() {
                 ScoreDataService.retrieveAllScores()
                     .then(response => {
                         this.scores = response.data;
                     });
             },
+            /**
+             * Gets called upon hitting the delete button to delete a score
+             * @param id
+             */
             deleteScoreClicked(id) {
                 ScoreDataService.deleteScore(id)
                 .then(() => {
                     this.refreshScores();
                 });
             },
+            /**
+             * Gets called upon hitting the add button to add a score
+             */
             addScore() {
                 this.$router.push(`/details/-1`);
             },
+            /**
+             * Gets called upon selecting a team to get win rates and route to a different page
+             * @param teamName
+             */
             winRates(teamName) {
                 ScoreDataService.retrieveWinRates(teamName)
                     .then(() => {
                         this.$router.push(`/rates/${teamName}`);
                     });
             },
+            /**
+             * Gets called when the compare button is clicked to compare face to face matches between 2 teams
+             * @param selectedTeams
+             */
             compareTeams(selectedTeams) {
                 if(this.scores[selectedTeams[[0]]].winner === this.scores[selectedTeams[[1]]].winner) {
                     alert("You can't compare the same team!");
@@ -84,7 +102,7 @@
                 }
                 ScoreDataService.compareTeams(this.scores[selectedTeams[[0]]].winner, this.scores[selectedTeams[[1]]].winner)
                     .then(() => {
-                        this.$router.push(`/compare?firstTeam=${this.scores[selectedTeams[[0]]].firstTeam}&secondTeam=${this.scores[selectedTeams[[1]]].winner}`)
+                        this.$router.push(`/compare?firstTeam=${this.scores[selectedTeams[[0]]].winner}&secondTeam=${this.scores[selectedTeams[[1]]].winner}`)
                     });
             }
         },
