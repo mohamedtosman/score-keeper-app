@@ -37,6 +37,6 @@ SpringBoot
 - Hitting `Save` will submit the form and take you back to home page
 - Hitting `Home` will take you to home page
 
-## Compare page
+### Compare page
 - Select 2 Winners by clicking the checkbox and hit compare. This will take you to the compare page where a win/loss rate donut chart will be displayed of face to face scores against each other.
 - Hitting `Home` will take you to home page
